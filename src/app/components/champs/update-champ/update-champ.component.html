@@ -1,0 +1,39 @@
+
+<h3 style="text-align: center">Modifier un champ</h3>
+<form class="form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Nom</mat-label>
+    <input matInput placeholder="nom" name="nom" [(ngModel)]="champ.nom">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Numéro</mat-label>
+    <input matInput placeholder="numero" name="numero" [(ngModel)]="champ.numero">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Date Ajout</mat-label>
+    <input matInput [matDatepicker]="picker"  #date="ngModel" name ="dateAjout"  [(ngModel)]="champ.dateAjout">
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Adresse</mat-label>
+    <input matInput placeholder="adress"
+           name="adress" [(ngModel)]="champ.adresse">
+  </mat-form-field>
+
+  <h4>Sélectionner un utilisateur</h4>
+  <mat-form-field appearance="fill">
+    <mat-label>User</mat-label>
+    <mat-select [(ngModel)]="champ.user" name="champ">
+      <mat-option *ngFor="let user of users" [value]="user">
+        {{user.email}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p> Selected champ: {{champ.user?.email}} </p>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button (click)="add()" >Save</button>
+  </mat-dialog-actions>
+</form>

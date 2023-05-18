@@ -1,0 +1,45 @@
+
+<h3 style="text-align: center">Modifier capteur</h3>
+<form class="form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Nom</mat-label>
+    <input matInput placeholder="nom" name="nom" [(ngModel)]="capteur.nom">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>ModeleCapteur</mat-label>
+    <input matInput placeholder="modelecapteur" name="modelecapteur" [(ngModel)]="capteur.modeleCapteur">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Numéro</mat-label>
+    <input matInput placeholder="numero" name="numero" [(ngModel)]="capteur.numero">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+  <mat-label>Date DateUtilisation</mat-label>
+    <input matInput [matDatepicker]="picker"  #date="ngModel" name ="dateAjout"  [(ngModel)]="capteur.dateUtilisation">
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Date Expiration</mat-label>
+      <input matInput [matDatepicker]="picker"  #date="ngModel" name ="dateAjout"  [(ngModel)]="capteur.dateExpiration">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+ 
+  
+  <h4>select Champ</h4>
+  <mat-form-field appearance="fill">
+    <mat-label>champ</mat-label>
+    <mat-select [(ngModel)]="capteur.champ" name="champ">
+      <mat-option *ngFor="let champ of champs" [value]="champ">
+        {{champ.nom}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p> Selected champ: {{capteur.champ.id}} </p>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button (click)="add()" >Save</button>
+  </mat-dialog-actions>
+</form>
