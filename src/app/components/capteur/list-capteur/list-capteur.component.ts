@@ -9,6 +9,9 @@ import {Capteur} from "../../../models/Capteur";
 import {CapteurService} from "../../../services/capteur.service";
 import {AddCapteurComponent} from "../add-capteur/add-capteur.component";
 import {UpdateCapteurComponent} from "../update-capteur/update-capteur.component";
+import { MqttService } from 'ngx-mqtt';
+
+
 
 @Component({
   selector: 'app-list-capteur',
@@ -23,9 +26,12 @@ export class ListCapteurComponent implements OnInit{
 
   @ViewChild(MatTable) table: MatTable<Capteur> | undefined;
 
-  constructor(public dialog: MatDialog , private capteurService:CapteurService) {
+  constructor(public dialog: MatDialog ,
+              private capteurService:CapteurService ,
+              private mqttService: MqttService) {
+    this.mqttService.connect()
   }
-  ngOnInit(): void {
+    ngOnInit(): void {
     this.getAll();
   }
   add() {
@@ -67,7 +73,7 @@ export class ListCapteurComponent implements OnInit{
       });
     }
   }
-  
+
   update(element:User) {
     const dialogRef = this.dialog.open(UpdateCapteurComponent,
       {
@@ -84,6 +90,22 @@ export class ListCapteurComponent implements OnInit{
         this.getAll()
       }
     });
+  }
+
+  findById() {
+    this.value != ""?
+    this.capteurService.getById(this.value).subscribe({
+      next:(res:any)=>this.dataSource = new MatTableDataSource([res]),
+      error:(err:any)=>console.log(err)
+    }):this.getAll()
+  }
+
+  off(id: any) {
+    this.mqttService.unsafePublish("capteur/"+id, "off")
+  }
+
+  on(id:any ) {
+    this.mqttService.unsafePublish("capteur/"+id, "on");
   }
 }
 

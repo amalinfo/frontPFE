@@ -12,6 +12,7 @@ export class MainComponent implements OnInit{
   showFiller = false;
   isadmin:boolean=false;
   topicname="capteur/notification/test";
+  nbNotification = 0;
   msg: any;
   isConnected: boolean = false;
   constructor(
@@ -19,28 +20,27 @@ export class MainComponent implements OnInit{
     private mqttService: MqttService) {
           this.mqttService.connect()
           this.mqttService.observe(this.topicname).subscribe(res=>{
-                console.log(res)
+                console.log("this is the notification : " , res.payload.toString())
+                this.nbNotification++;
           })
-          this.mqttService.unsafePublish(this.topicname,"from angular test")
-
     }
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
   ngOnInit(): void {
     this.isadmin=this.userservice.isAdmin()
-  } 
-    
+  }
+
       logout(){
         localStorage.clear();
         this.router.navigateByUrl("/login")
       }
 
-   
- 
- 
+
+
+
 }

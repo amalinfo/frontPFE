@@ -39,13 +39,16 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { UserlistChampsComponent } from './components/user/userlist-champs/userlist-champs.component';
 import { ListcapteurchampComponent } from './components/champs/listcapteurchamp/listcapteurchamp.component';
 import { IMqttServiceOptions, MqttModule } from 'ngx-mqtt';
+import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassword.component';
 
 
 
 export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
-  hostname: 'broker.hivemq.com',
-  port: 8000,
-}
+  hostname: 'broker.emqx.io',
+  port: 8083,
+  path:"/mqtt",
+  protocol:"ws"
+ }
 
 @NgModule({
   declarations: [
@@ -66,6 +69,7 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     AddHistoryComponent,
     UserlistChampsComponent,
     ListcapteurchampComponent,
+    ForgetpasswordComponent,
 
 
   ],

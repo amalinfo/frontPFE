@@ -26,6 +26,10 @@ export class CapteurService {
   delete(id :any){
     return this.http.delete(this.url+"/"+id)
   }
+
+  getById(value: string) {
+      return this.http.get(this.url+"/findbyid/"+value);
+  }
 }
 
 

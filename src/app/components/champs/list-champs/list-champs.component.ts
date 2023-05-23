@@ -96,6 +96,16 @@ export class ListChampsComponent implements OnInit{
       }
     });
   }
+
+  findById() {
+    this.value!="" ?
+      this.champService.getById(this.value).subscribe({
+        next :(res:any)=>{
+          this.dataSource = new MatTableDataSource([res]);
+        },
+        error:(err : any)=>console.error(err)
+      }):this.getAll()
+  }
 }
 
 

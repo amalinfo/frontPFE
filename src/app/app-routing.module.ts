@@ -8,9 +8,11 @@ import {ListChampsComponent} from "./components/champs/list-champs/list-champs.c
 import {ListCapteurComponent} from "./components/capteur/list-capteur/list-capteur.component";
 import {HistoryListComponent} from "./components/history/history-list/history-list.component";
 import {GuardService} from "./services/guard.service";
+import {ForgetpasswordComponent} from "./components/forgetpassword/forgetpassword.component";
 
 const routes: Routes = [
   {path:"login", component: LoginComponent},
+  {path:"forgetPassword", component: ForgetpasswordComponent},
   {path:"" , component:MainComponent,
     canActivate: [GuardService],
     children:[

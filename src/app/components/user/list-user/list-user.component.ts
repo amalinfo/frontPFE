@@ -66,7 +66,7 @@ listChamp(user :any){
 }
 deleteUser(id: any) {
   const confirmation = confirm("Voulez-vous vraiment supprimer cet utilisateur ?"); // Affiche une boîte de dialogue de confirmation
-  
+
   if (confirmation) {
     this.userService.deleteuser(id).subscribe({
       next: (res: any) => {
@@ -99,6 +99,16 @@ deleteUser(id: any) {
         this.getAllUsers()
       }
     });
+  }
+
+  findById() {
+    if (this.value!= ''){
+    this.userService.getUsebyId(this.value).subscribe({
+      next:(res :any)=>{this.dataSource = new MatTableDataSource([res])
+        console.log(res);
+      },
+      error:(err:any)=>console.error(err)
+    })}else this.getAllUsers();
   }
 }
 
