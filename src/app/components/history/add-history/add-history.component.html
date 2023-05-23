@@ -1,0 +1,23 @@
+
+<h3 style="text-align: center">add history</h3>
+<form class="form">
+  <mat-form-field class="example-full-width">
+    <mat-label>nom</mat-label>
+    <input matInput placeholder="nom" type="number" name="nom" [(ngModel)]="history.valeur">
+  </mat-form-field>
+  <h4>select capteur</h4>
+  <mat-form-field appearance="fill">
+    <mat-label>Capteur</mat-label>
+    <mat-select [(ngModel)]="history.idCapteur" name="idCapteur">
+      <mat-option *ngFor="let c of capteurs" [value]="c.id">
+        {{c.numero}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p> Selected Capteur: {{history.idCapteur}} </p>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button (click)="add()" >Save</button>
+  </mat-dialog-actions>
+</form>

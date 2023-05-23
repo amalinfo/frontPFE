@@ -1,0 +1,40 @@
+
+<h3 style="text-align: center">Ajouter un champ </h3>
+<form class="form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Nom</mat-label>
+    <input matInput placeholder="nom" name="nom" [(ngModel)]="champ.nom">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Numéro</mat-label>
+    <input matInput placeholder="numero" name="numero" [(ngModel)]="champ.numero">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+  <mat-label>DateAjout</mat-label>
+    <input matInput placeholder="DateAjout"
+           type="date"
+           name="DateAjout" [(ngModel)]="
+           champ.date_ajout">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Adresse</mat-label>
+    <input matInput placeholder="adress"
+           name="adress" [(ngModel)]="champ.adresse">
+  </mat-form-field>
+
+  <h4>Sélectionner un utilisateur</h4>
+  <mat-form-field appearance="fill">
+    <mat-label>User</mat-label>
+    <mat-select [(ngModel)]="champ.userEmail" name="champ?">
+      <mat-option *ngFor="let user of users" [value]="user.email">
+        {{user.email}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p>  {{champ.userEmail}} </p>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button (click)="add()" >Save</button>
+  </mat-dialog-actions>
+</form>

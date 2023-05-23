@@ -1,0 +1,37 @@
+
+
+<div class="login-form-flex">
+      <mat-card class="mat-card" align="center">
+        <mat-card-content>
+          <mat-card-title>
+                 Login
+          </mat-card-title>
+
+                <form class="user">
+                  <mat-form-field class="form-group">
+
+                    <input matInput type="email" id="exampleInputEmail" aria-describedby="emailHelp" name="login" placeholder="Enter Email Address..." [(ngModel)]="authenticationRequest.email">
+                    <mat-icon matSuffix>person</mat-icon>
+                  </mat-form-field>
+                  <br>
+                  <mat-form-field class="form-group">
+                    <input matInput type="password" name="password" id="exampleInputPassword" placeholder="Password" [(ngModel)]="authenticationRequest.password">
+                    <mat-icon matSuffix>lock</mat-icon>
+                  </mat-form-field>
+                  <br>
+                  <button mat-raised-button color="accent" (click)="login()" >
+                    <mat-icon class="material-icons">check</mat-icon>Se connecter
+                  </button>
+                </form>
+                <div class="alert alert-danger" *ngIf="errorMessage">
+                  {{errorMessage}}
+                </div>
+                <hr>
+                <div class="text-center">
+                  <a class="small" routerLink="/forgetPassword">Forgot Password</a>
+                </div>
+
+
+        </mat-card-content>
+      </mat-card>
+    </div>
