@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Capteur} from "../models/Capteur";
 import {Observable} from "rxjs";
 
@@ -15,6 +15,13 @@ export class CapteurService {
   getAllChampsCapteur(id: any) {
     return this.http.get(this.url+"/getByChamp/"+id);
   }
+
+  generatePdf(idC : any){
+    return this.http.get("http://localhost:8081/History/pdf/"+idC  , {
+      responseType: 'blob', // Set the response type to 'blob'
+      headers: new HttpHeaders().append('Content-Type', 'application/pdf')
+    });
+  }
   addcapteur(capteur:Capteur){
     return this.http.post(this.url+"/save",capteur)
   }
@@ -29,6 +36,11 @@ export class CapteurService {
 
   getById(value: string) {
       return this.http.get(this.url+"/findbyid/"+value);
+  }
+
+  getAllUserCapteur() {
+    let email = localStorage.getItem("userEmail")
+    return this.http.get(this.url+"/getByOwnerEmail/"+email)
   }
 }
 

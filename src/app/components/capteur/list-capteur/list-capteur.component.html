@@ -1,7 +1,7 @@
 <div >
 
   <span class="spacer"></span>
-  <button mat-raised-button (click)="add()" >
+  <button mat-raised-button (click)="add()" *ngIf="admin" >
     Ajouter
   </button>
   <mat-form-field >
@@ -60,7 +60,7 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef>Actions</th>
     <td *matCellDef="let element">
-      <button mat-icon-button
+      <button mat-icon-button *ngIf="admin"
               (click)="delete(element.id)">
       <mat-icon color="warn"> delete</mat-icon></button>
       <button mat-icon-button
@@ -68,7 +68,9 @@
       <button mat-icon-button
               (click)="off(element.id)"><mat-icon color="warn">sensors_off</mat-icon></button>
       <button mat-icon-button
-              (click)="on(element.id)"><mat-icon color="primary">sensors_on</mat-icon></button>
+              (click)="on(element.id)"><mat-icon color="primary">sensors_on</mat-icon>
+      </button> <button mat-icon-button
+              (click)="generatePdf(element.id)"><mat-icon color="primary">picture_as_pdf</mat-icon></button>
     </td>
   </ng-container>
 

@@ -12,6 +12,7 @@ import {AddChampComponent} from "../add-champ/add-champ.component";
 import {UpdateChampComponent} from "../update-champ/update-champ.component";
 
 import { ListcapteurchampComponent } from '../listcapteurchamp/listcapteurchamp.component';
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-list-champs',
@@ -22,10 +23,14 @@ export class ListChampsComponent implements OnInit{
   displayedColumns: string[] = ['id', 'numero', 'nom', 'adress','dateAjout','actions'];
   dataSource: MatTableDataSource<Champ> =new MatTableDataSource();
   value = '';
+  admin = false;
 
 @ViewChild(MatTable) table: MatTable<Champ> | undefined;
 
-  constructor(public dialog: MatDialog , private champService:ChampsService) {
+  constructor(public dialog: MatDialog ,
+              private userService:UserService,
+              private champService:ChampsService) {
+      this.admin = this.userService.isAdmin();
   }
   ngOnInit(): void {
     this.getAll();
@@ -57,6 +62,7 @@ export class ListChampsComponent implements OnInit{
     );
   }
   getAll(){
+    this.userService.isAdmin()?
     this.champService.getAllChamp().subscribe({
       next:(res:Champ[])=> {
         console.log(res)
@@ -64,6 +70,13 @@ export class ListChampsComponent implements OnInit{
       },
       error:(err)=>console.error(err)
     })
+      :this.champService.getAllChampsByEmail().subscribe({
+        next:(res:any)=> {
+          console.log(res)
+          this.dataSource = new MatTableDataSource(res)
+        },
+        error:(err)=>console.error(err)
+      })
   }
   delete(id: any) {
     if (window.confirm("Êtes-vous sûr de vouloir supprimer cet élément ?")) {

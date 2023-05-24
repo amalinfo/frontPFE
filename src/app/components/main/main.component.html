@@ -4,7 +4,7 @@
   </button>
   <span>Champs Agriculture</span>
   <span class="toolbar-item-spacer"  ></span>
-  <button mat-icon-button matTooltip="Notifications">
+  <button mat-icon-button matTooltip="Notifications" [matMenuTriggerFor]="NotificationCom">
     <mat-icon>notifications</mat-icon>{{nbNotification}}
   </button>
   <button mat-icon-button matTooltip="My Account" [matMenuTriggerFor]="userAccountMenu">
@@ -24,6 +24,13 @@
     <button mat-menu-item (click)="logout()">
       <mat-icon>exit_to_app</mat-icon>Logout
     </button>
+  </mat-menu>
+  <mat-menu #NotificationCom [overlapTrigger]="false" yPosition="below">
+  <div *ngFor="let notification of notificationList">
+      captuer id  {{notification}}
+    <mat-divider></mat-divider>
+  </div>
+
   </mat-menu>
 </mat-toolbar>
 

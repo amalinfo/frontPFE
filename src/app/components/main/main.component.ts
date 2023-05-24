@@ -13,6 +13,7 @@ export class MainComponent implements OnInit{
   isadmin:boolean=false;
   topicname="capteur/notification/test";
   nbNotification = 0;
+  notificationList:any = [];
   msg: any;
   isConnected: boolean = false;
   constructor(
@@ -22,6 +23,7 @@ export class MainComponent implements OnInit{
           this.mqttService.observe(this.topicname).subscribe(res=>{
                 console.log("this is the notification : " , res.payload.toString())
                 this.nbNotification++;
+                this.notificationList.push(res.payload.toString())
           })
     }
 

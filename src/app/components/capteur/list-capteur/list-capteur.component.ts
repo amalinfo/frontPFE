@@ -23,13 +23,16 @@ export class ListCapteurComponent implements OnInit{
   'dateExpiration','champ' , 'actions'];
   dataSource: MatTableDataSource<Capteur> =new MatTableDataSource();
   value = '';
+  admin = false;
 
   @ViewChild(MatTable) table: MatTable<Capteur> | undefined;
 
   constructor(public dialog: MatDialog ,
               private capteurService:CapteurService ,
+              private userService:UserService,
               private mqttService: MqttService) {
     this.mqttService.connect()
+    this.admin = this.userService.isAdmin();
   }
     ngOnInit(): void {
     this.getAll();
@@ -50,7 +53,35 @@ export class ListCapteurComponent implements OnInit{
       }
     });
   }
+  public base64ToArrayBuffer(base64: any): ArrayBuffer {
+    const binaryString = window.atob(base64);
+    const len = binaryString.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+    return bytes.buffer;
+  }
+  generatePdf(id:any){
+    this.capteurService.generatePdf(id).subscribe({
+      next:(response:any)=>{
+        // Create a download link
+        const downloadLink = document.createElement('a');
+        downloadLink.href = window.URL.createObjectURL(response);
+        downloadLink.download ="capteur_"+id+'.pdf';
+
+        // Simulate a click on the link to trigger the download
+        downloadLink.click();
+
+        // Clean up
+        window.URL.revokeObjectURL(downloadLink.href);
+        downloadLink.remove();
+        },
+      error:(err:any)=>console.error(err)
+    })
+  }
   getAll(){
+    this.userService.isAdmin()?
     this.capteurService.getAllCapteur().subscribe({
       next:(res:Capteur[])=> {
         console.log(res)
@@ -58,6 +89,15 @@ export class ListCapteurComponent implements OnInit{
       },
       error:(err)=>console.error(err)
     })
+      :
+      this.capteurService.getAllUserCapteur().subscribe({
+        next:(res:any)=> {
+          console.log(res)
+          this.dataSource = new MatTableDataSource(res)
+        },
+        error:(err:any)=>console.error(err)
+      });
+
   }
   delete(id: any) {
     if (window.confirm("Êtes-vous sûr de vouloir supprimer cet élément ?")) {
@@ -107,6 +147,8 @@ export class ListCapteurComponent implements OnInit{
   on(id:any ) {
     this.mqttService.unsafePublish("capteur/"+id, "on");
   }
+
+
 }
 
 

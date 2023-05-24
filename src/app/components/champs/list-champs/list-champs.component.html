@@ -1,5 +1,5 @@
 <div >
-  <button mat-raised-button (click)="add()" >
+  <button mat-raised-button (click)="add()" *ngIf="admin" >
 Ajouter
   </button>
   <span class="spacer"></span>
@@ -52,6 +52,7 @@ Ajouter
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef>Actions</th>
     <td *matCellDef="let element"><button mat-icon-button
+                                          *ngIf="admin"
                                           (click)="delete(element.id)"><mat-icon color="warn"> delete</mat-icon></button>
       <button mat-icon-button
               (click)="update(element)"><mat-icon color="accent" >edit</mat-icon></button>

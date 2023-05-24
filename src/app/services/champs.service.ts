@@ -11,6 +11,10 @@ export class ChampsService {
   getAllUserChamps(id: any) {
     return this.http.get(this.url+"/getByUser/"+id);
   }
+  getAllChampsByEmail() {
+    let email = localStorage.getItem("userEmail");
+    return this.http.get(this.url+"/getByEmail/"+email);
+  }
   updatechamp(champ: any) {
     return this.http.put(this.url + '/update/'+champ.id, champ);
   }
