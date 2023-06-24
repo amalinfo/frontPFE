@@ -9,10 +9,13 @@ import {ListCapteurComponent} from "./components/capteur/list-capteur/list-capte
 import {HistoryListComponent} from "./components/history/history-list/history-list.component";
 import {GuardService} from "./services/guard.service";
 import {ForgetpasswordComponent} from "./components/forgetpassword/forgetpassword.component";
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+
 
 const routes: Routes = [
   {path:"login", component: LoginComponent},
   {path:"forgetPassword", component: ForgetpasswordComponent},
+  {path:"changePassword" , component:ChangePasswordComponent},
   {path:"" , component:MainComponent,
     canActivate: [GuardService],
     children:[
@@ -20,7 +23,8 @@ const routes: Routes = [
       {path:"" , component:HomeComponent},
       {path:"champs" , component:ListChampsComponent},
       {path:"capteurs" , component:ListCapteurComponent},
-      {path:"history" , component:HistoryListComponent}
+      {path:"history" , component:HistoryListComponent},
+      
     ]}
 ];
 

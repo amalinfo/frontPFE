@@ -23,4 +23,7 @@ export class HistoryService {
   get() {
     return this.http.get<History[]>(this.url+"/pdf");
   }
+  getById(value: string) {
+    return this.http.get(this.url+"/findbyid/"+value);
+}
 }

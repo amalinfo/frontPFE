@@ -1,5 +1,5 @@
 
-<h1>champ {{data.nom}}Liste capteurs</h1>
+<h1> Liste capteurs {{data.nom}}</h1>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
   <!-- Position Column -->
   <ng-container matColumnDef="id">
@@ -10,7 +10,7 @@
    <ng-container matColumnDef="nom">
     <th mat-header-cell *matHeaderCellDef>Nom</th>
     <td mat-cell *matCellDef="let element">{{element.nom}}</td>
-  </ng-container>
+  </ng-container>  
 
   <!-- Name Column -->
   <ng-container matColumnDef="numero">

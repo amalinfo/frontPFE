@@ -5,6 +5,7 @@ import {ChampsService} from "../../../services/champs.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {UserService} from "../../../services/user.service";
 import {User} from "../../../models/User";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-champ',
@@ -27,6 +28,15 @@ export class UpdateChampComponent  implements OnInit{
     this.getAllUsers()
   }
   add() {
+   console.log(this.champ)
+    if(this.champ.nom===undefined||this.champ.userEmail===undefined||
+      this.champ.adresse===undefined||this.champ.numero===undefined||
+      this.champ.dateAjout===undefined){
+       Swal.fire("Remplir tout le formulaire !!!",undefined, "warning")
+       return
+    }
+
+    Swal.fire("Modification réussie !!!",undefined, "success")
     
     this.champsService.updatechamp(this.champ).subscribe({
       next:(res:any)=>this.dialogRef.close(true),

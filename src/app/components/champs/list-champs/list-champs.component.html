@@ -1,16 +1,23 @@
-<div >
-  <button mat-raised-button (click)="add()" *ngIf="admin" >
-Ajouter
-  </button>
+<div class="container">
+
   <span class="spacer"></span>
-  <mat-form-field >
-    <mat-label>Rechercher</mat-label>
-    <input matInput type="text" [(ngModel)]="value" (ngModelChange)="findById()">
-    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
-</div>
+ 
+  
+    <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+          <div class="searchbar">
+            <input matInput  [(ngModel)]="value" (ngModelChange)="findById()" class="search_input" type="text" name="" placeholder="Chercher...">
+            <a (click)="value=''" class="search_icon"><mat-icon>search</mat-icon></a>
+          </div>
+        </div>
+      </div>
+
+<br><br>
+<button mat-raised-button *ngIf="admin" (click)="add()" class="btn " style="font-family: Verdana, Geneva, Tahoma, sans-serif; margin-left:980px; background: #30356e;" >
+  Ajouter
+   </button>
+   <br><br>
+
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
   <!-- Position Column -->

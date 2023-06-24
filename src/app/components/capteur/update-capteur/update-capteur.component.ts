@@ -4,6 +4,7 @@ import {Champ} from "../../../models/Champ";
 import {CapteurService} from "../../../services/capteur.service";
 import {ChampsService} from "../../../services/champs.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-capteur',
@@ -21,6 +22,7 @@ export class UpdateCapteurComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    
     console.log(this.data)
     this.capteur = this.data;
   
@@ -28,6 +30,17 @@ export class UpdateCapteurComponent implements OnInit{
 
   }
   add() {
+    console.log(this.capteur.numero)
+    if(this.capteur.nom===undefined||this.capteur.dateUtilisation===undefined||
+      this.capteur.modeleCapteur===undefined||this.capteur.numero===undefined||
+      this.capteur.dateExpiration===undefined||this.capteur.nom===""||this.capteur.dateUtilisation===""||
+      this.capteur.modeleCapteur===""||this.capteur.numero===""||this.capteur.dateExpiration===""){
+
+       Swal.fire("Remplir tout le formulaire !!!",undefined, "warning")
+       return
+    }
+
+    Swal.fire("Modifier réussie !!!",undefined, "success")
     this.capteur.etat=true
     this.capteurService.addcapteur(this.capteur).subscribe({
       next:(res:any)=>this.dialogRef.close(true),

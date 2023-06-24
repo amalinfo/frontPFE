@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {User} from "../models/User";
 import {AuthService} from "./auth.service";
+import { EmailValidator } from '@angular/forms';
 
 
 @Injectable({
@@ -20,6 +21,7 @@ export class UserService {
 
   private baseUrl:string=   'http://localhost:8081/Utilisateurs';
   private authUrl:string='http://localhost:8081/api/auth';
+  private notification:string=   'http://localhost:8081/Notification';
   isUserLoggedIn():boolean
   {
     if(localStorage.getItem("accessToken"))
@@ -83,6 +85,7 @@ export class UserService {
   updateUser(user:User){
     return this.httpClient.put(this.baseUrl+"/update/"+user.id,user)
   }
-
-
+  getEmailUser(email:any):Observable<User>{
+    return this.httpClient.get<User>(this.baseUrl+"/getEmail/"+email)
+  }
 }

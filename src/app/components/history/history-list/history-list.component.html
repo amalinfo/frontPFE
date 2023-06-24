@@ -1,4 +1,18 @@
+<div class="container">
 
+  <span class="spacer"></span>
+ 
+  
+    <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+          <div class="searchbar">
+            <input matInput  [(ngModel)]="value"  class="search_input" type="text" name="" placeholder="Chercher...">
+            <a (click)="value=''" class="search_icon"><mat-icon>search</mat-icon></a>
+          </div>
+        </div>
+      </div>
+  
+<br><br>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
   <!-- Position Column -->
@@ -31,7 +45,9 @@
     <!-- Weight Column -->
     <ng-container matColumnDef="etat">
       <th mat-header-cell *matHeaderCellDef>Etat</th>
-      <td mat-cell *matCellDef="let element">{{element.capteur.etat}}</td>
+      <td mat-cell *matCellDef="let element">
+        <div [ngClass]="{'circle-red': !element.etat, 'circle-green': element.etat}"></div>
+      </td>
     </ng-container>
  
   <!-- Weight Column -->

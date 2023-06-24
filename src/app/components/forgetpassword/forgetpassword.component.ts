@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import {AuthService} from "../../services/auth.service";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-forgetpassword',
@@ -11,10 +12,21 @@ export class ForgetpasswordComponent {
 email : any;
   constructor(private authService:AuthService , private  router :Router) {
   }
-  forgetPwd() {
+  forgetPwd() { 
+
     this.authService.forgetpassword(this.email).subscribe({
-      next:(res:any)=>this.router.navigateByUrl("/login"),
-      error:(err:any)=>console.log(err)
+      next:(res:any)=>{
+        this.router.navigateByUrl("/changePassword")
+     
+      },
+      error:(err:any)=>{
+        if(err.error===null){
+          Swal.fire("Mail Invalid !",undefined, "warning")
+        }
+        else {
+          this.router.navigateByUrl("/changePassword")
+        }
+      }
     })
   }
 }

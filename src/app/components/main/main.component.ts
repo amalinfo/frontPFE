@@ -27,14 +27,12 @@ export class MainComponent implements OnInit{
           })
     }
 
-
-
-
-
-
-
   ngOnInit(): void {
     this.isadmin=this.userservice.isAdmin()
+    this.userservice.getEmailUser("nasramal76@gmail.com").subscribe(
+      (data)=>console.log(data),
+    )
+   
   }
 
       logout(){

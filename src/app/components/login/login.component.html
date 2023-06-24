@@ -1,37 +1,50 @@
+<!-- Section: Design Block -->
+<body class="img js-fullheight" style="background-image: url(../../../assets/bg.jpg);">
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Se connecter</h2>
+          <img src="../../../assets/logo.png" style="width: 150px;" class="avatar sm rounded-pill me-3 flex-shrink-0" alt="Customer">
+				</div>
+        
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4">
+          
+					<div class="login-wrap p-0">
+		      	<form  class="signin-form">
+		      		<div class="form-group">
+		      			<input matInput class="form-control" type="email" id="exampleInputEmail" aria-describedby="emailHelp" name="login" placeholder="Addresse Email  " [(ngModel)]="authenticationRequest.email">
 
+                
+		      		</div>
+	            <div class="form-group">
+                <input matInput class="form-control" type="password" name="password" id="exampleInputPassword" placeholder="Mot de passe" [(ngModel)]="authenticationRequest.password">
 
-<div class="login-form-flex">
-      <mat-card class="mat-card" align="center">
-        <mat-card-content>
-          <mat-card-title>
-                 Login
-          </mat-card-title>
+	            </div>
+	            <div class="form-group">
+	            	<button mat-raised-button color="accent" (click)="login()" class="form-control btn btn-primary submit px-3">Connecter</button>
+	            </div>
+	            <div class="form-group d-md-flex">
+	            	<div class="w-50">
+		            	
+								</div>
+								<div class="w-50 text-md-right">
+									<a routerLink="/forgetPassword" style="color: #e3ed22">Mot de passe oublié !?</a>
+								</div>
+	            </div>
+              
 
-                <form class="user">
-                  <mat-form-field class="form-group">
+              <div class="alert alert-danger" style="width:275px;margin-left:50px ;" *ngIf="errorMessage">
+                {{errorMessage}} !
+              </div>
+	          </form>
+	          
+		      </div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-                    <input matInput type="email" id="exampleInputEmail" aria-describedby="emailHelp" name="login" placeholder="Enter Email Address..." [(ngModel)]="authenticationRequest.email">
-                    <mat-icon matSuffix>person</mat-icon>
-                  </mat-form-field>
-                  <br>
-                  <mat-form-field class="form-group">
-                    <input matInput type="password" name="password" id="exampleInputPassword" placeholder="Password" [(ngModel)]="authenticationRequest.password">
-                    <mat-icon matSuffix>lock</mat-icon>
-                  </mat-form-field>
-                  <br>
-                  <button mat-raised-button color="accent" (click)="login()" >
-                    <mat-icon class="material-icons">check</mat-icon>Se connecter
-                  </button>
-                </form>
-                <div class="alert alert-danger" *ngIf="errorMessage">
-                  {{errorMessage}}
-                </div>
-                <hr>
-                <div class="text-center">
-                  <a class="small" routerLink="/forgetPassword">Forgot Password</a>
-                </div>
-
-
-        </mat-card-content>
-      </mat-card>
-    </div>
+	</body>

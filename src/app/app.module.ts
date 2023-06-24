@@ -40,6 +40,7 @@ import { UserlistChampsComponent } from './components/user/userlist-champs/userl
 import { ListcapteurchampComponent } from './components/champs/listcapteurchamp/listcapteurchamp.component';
 import { IMqttServiceOptions, MqttModule } from 'ngx-mqtt';
 import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassword.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 
 
@@ -47,7 +48,9 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
   hostname: 'broker.emqx.io',
   port: 8083,
   path:"/mqtt",
-  protocol:"ws"
+  protocol:"ws",
+   resubscribe:true,
+   
  }
 
 @NgModule({
@@ -70,6 +73,7 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     UserlistChampsComponent,
     ListcapteurchampComponent,
     ForgetpasswordComponent,
+    ChangePasswordComponent,
 
 
   ],

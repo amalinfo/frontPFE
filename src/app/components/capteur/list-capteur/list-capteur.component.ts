@@ -142,10 +142,12 @@ export class ListCapteurComponent implements OnInit{
 
   off(id: any) {
     this.mqttService.unsafePublish("capteur/"+id, "off")
+    alert("Le capteur est fermer!");
   }
 
   on(id:any ) {
     this.mqttService.unsafePublish("capteur/"+id, "on");
+    alert("Le capteur est ouvert !");
   }
 
 

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {User} from "../../../models/User";
 import {UserService} from "../../../services/user.service";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
@@ -14,9 +14,18 @@ constructor(private userService : UserService ,
             public dialogRef: MatDialogRef<AddUserComponent>) {
 }
   addUser() {
+    if(this.user.nom===undefined||this.user.prenom===undefined||
+      this.user.age===undefined||this.user.email===undefined||
+      this.user.numTel===undefined||this.user.password||this.user.adress){
+       Swal.fire("Remplir tout le formulaire !!!",undefined, "warning")
+       return
+    }
+    Swal.fire("Ajout réussie !!!",undefined, "success")
     this.userService.addUser(this.user).subscribe({
       next:(res:any)=>this.dialogRef.close(true),
       error:(res:any)=>this.dialogRef.close(false)
     })
+    
   }
-}
+  }
+

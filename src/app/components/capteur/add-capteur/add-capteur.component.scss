@@ -1,0 +1,28 @@
+
+  body {
+    background-color: skyblue;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mat-form-field {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .mat-label {
+    color: white; /* Couleur de texte pour les étiquettes */
+  }
+
+  .mat-select {
+    color: black; /* Couleur de texte pour les options de sélection */
+  }
+
+  .mat-button {
+    background-color: yellow;
+    color: black;
+  }
