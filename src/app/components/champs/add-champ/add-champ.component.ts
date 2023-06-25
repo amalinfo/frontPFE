@@ -24,8 +24,11 @@ export class AddChampComponent implements OnInit{
     this.getAllUsers()
   }
   add() {
-    if(this.champ.nom===undefined||this.champ.userEmail===undefined||
-      this.champ.adresse===undefined||this.champ.numero===undefined||
+    console.log(this.champ);
+    if(this.champ.nom===undefined||
+      this.champ.userEmail===undefined||
+      this.champ.adresse===undefined||
+      this.champ.numero===undefined||
       this.champ.date_ajout===undefined){
        Swal.fire("Remplir tout le formulaire !!!",undefined, "warning")
        return

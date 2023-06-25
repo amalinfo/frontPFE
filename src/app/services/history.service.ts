@@ -15,6 +15,7 @@ export class HistoryService {
   }
 
   delete(id: any) {
+    console.log("url ", this.url+"/delete/"+id);
   return this.http.delete(this.url+"/delete/"+id) 
   }
   save(history:HistoryDto){

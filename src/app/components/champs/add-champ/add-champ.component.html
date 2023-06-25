@@ -26,7 +26,7 @@
   <mat-form-field appearance="fill">
     <mat-label>User</mat-label>
     <mat-select [(ngModel)]="champ.userEmail" name="champ?">
-      <mat-option *ngFor="let user of users" [value]="user.nom">
+      <mat-option *ngFor="let user of users" [value]="user.email">
         {{user.email}}
       </mat-option>
     </mat-select>

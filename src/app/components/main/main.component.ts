@@ -32,7 +32,6 @@ export class MainComponent implements OnInit{
     this.userservice.getEmailUser("nasramal76@gmail.com").subscribe(
       (data)=>console.log(data),
     )
-   
   }
 
       logout(){

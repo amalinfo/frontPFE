@@ -14,9 +14,15 @@ constructor(private userService : UserService ,
             public dialogRef: MatDialogRef<AddUserComponent>) {
 }
   addUser() {
-    if(this.user.nom===undefined||this.user.prenom===undefined||
-      this.user.age===undefined||this.user.email===undefined||
-      this.user.numTel===undefined||this.user.password||this.user.adress){
+    console.log(this.user)
+    if(
+      this.user.nom===undefined||
+      this.user.prenom===undefined||
+      this.user.age===undefined||
+      this.user.email===undefined||
+      this.user.numTel===undefined||
+      this.user.password === undefined||
+      this.user.adress === undefined){
        Swal.fire("Remplir tout le formulaire !!!",undefined, "warning")
        return
     }
